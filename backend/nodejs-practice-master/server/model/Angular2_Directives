@@ -1,0 +1,113 @@
+1. Directives are instructions which tell angular 
+to do something
+
+ex: <router-outlet></router-outlet>
+
+
+Angular 2 has the following directives that get called as part of the BrowserModule module.
+
+ngif
+ngFor
+
+
+
+example for ngIf:
+
+import { Component } from '@angular/core';
+import { StudentComponent }  from '../app/student/student.component';
+
+
+@Component({
+  moduleId:module.id,
+  selector: 'my-app',
+  template: `<ul>
+  <li *ngIf="home"><a href="">Home</a></li>
+  <li *ngIf="login"><a href="">login</a></li>
+  <li *ngIf="register"><a href="">Register</a></li>
+      </ul>
+  `,
+})
+export class AppComponent  { 
+home:boolean = true;
+login:boolean = true;
+register:boolean= true;
+ }
+
+
+ngFor:
+
+import { Component } from '@angular/core';
+import { StudentComponent }  from '../app/student/student.component';
+
+
+@Component({
+  moduleId:module.id,
+  selector: 'my-app',
+  template: `<ul *ngFor="let movie of movies">
+             <li>{{movie.name}}</li>
+      </ul>
+  `,
+})
+export class AppComponent  { 
+movies:any[]=[{
+    "name":"movie 1"
+           },
+           {
+    "name":"movie 2"
+           },
+           {
+    "name":"movie 3"
+           },
+           ]
+}
+
+Predefined Directives List:
+
+https://angular.io/api#!?type=directive
+
+
+
+3 Types of Directives:
+
+1. Components
+
+2. Attribute:  
+- Interacts with the element to change its properties
+ex: ngClass
+
+creating custom attribute directive:
+
+import {Directive,ElementRef,Renderer} from '@angular/core';
+
+@Directive({
+    selector:'[chcolor]'
+})
+export class ChangeColorDirective{
+    
+    constructor(private el:ElementRef,private render:Renderer){
+    this.changeColor("red");
+    }
+    private changeColor(color:String){
+           this.render.setElementStyle(this.el.nativeElement,'color',color);
+    }
+}
+
+
+
+
+@Component({
+  moduleId:module.id,
+  selector: 'my-app',
+  template: `<p chcolor>Hello</p>  `,
+})
+export class AppComponent  { 
+
+}
+
+
+3. Structural:
+
+- changes the structure of the html code.
+
+ex: *ngIf
+

@@ -1,0 +1,37 @@
+  <div class="container">
+    <div class="row">
+        <form name="f"   #f="ngForm" (ngSubmit)="submit(f)">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+            <h4>Login</h4>
+            <input type="text" required name="userName" minlength="3" maxlength="6"  ngModel  #userName="ngModel"   class="form-control input-sm chat-input"  /><br>
+           
+            <div class="btn btn-danger" *ngIf=" userName.touched && !userName.valid">
+
+                        <div *ngIf="userName.errors.required">Username Required</div>
+                         <div *ngIf="userName.errors.minlength"> 3 characters needed</div>
+                          <div *ngIf="userName.errors.maxlength">6 is the max characters</div>
+
+            </div>
+
+             <input type="password" required name="passWord" minlength="8" maxlength="10"  ngModel  #password="ngModel"   class="form-control input-sm chat-input"  /><br>
+           
+            <div class="btn btn-danger" *ngIf=" password.touched && !password.valid">
+
+                        <div *ngIf="password.errors.required">Password Required</div>
+                         <div *ngIf="password.errors.minlength"> 8 characters needed</div>
+                          <div *ngIf="password.errors.maxlength">10is the max characters</div>
+
+            </div>
+            
+            <div class="wrapper">
+            <span class="group-btn">     
+                <button class="btn btn-primary btn-md" [disabled]="f.invalid" >Send</button>
+            </span>
+            </div>
+            </div>
+        
+        </div>
+        </form>
+    </div>
+</div>
